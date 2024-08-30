@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify-your favourite songs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li class="brand"><img src="images/logo.png" alt="spotify"><span>Spotify</span> </li>
+            <li>Home</li>
+            <li>About</li>
+
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="songlist">
+            <h1>Best of NCS-No copyright sounds</h1>
+            <div class="songitemcontainer">
+                <div class="songsitems">
+                    <img src="images/1.jpg" alt="1">
+                    <h5 class="songName">lem me love you</h5>
+                    <span class="songlistplay"><span id="current-time" class="timestamp">00:00 <i id="1"
+                                class="songitemplay fa-solid fa-play "></i></span>
+                </div>
+                <div class="songsitems">
+                    <img src="images/2.jpg" alt="1">
+                    <h5 class="songName">lem me love</h5>
+                    <span class="songlistplay"><span id="current-time" class="timestamp">00:00 <i id="2"
+                                class="songitemplay fa-solid fa-play "></i></span>
+                </div>
+                <div class="songsitems">
+                    <img src="images/3.jpg" alt="1">
+                    <h5 class="songName">lem me love you</h5>
+                    <span class="songlistplay"><span id="current-time" class="timestamp">00:00<i id="3"
+                                class=" songitemplay fa-solid fa-play "></i></span>
+                </div>
+
+                <div class="songsitems">
+                    <img src="images/4.jpg" alt="1">
+                    <h5 class="songName">lem me love you</h5>
+                    <span class="songlistplay"><span id="current-time" class="timestamp">00:00 <i id="4"
+                                class="songitemplay fa-solid fa-play "></i></span>
+                </div>
+
+                <div class="songsitems">
+                    <img src="images/5.jpg" alt="1">
+                    <h5 class="songName">lem me love you</h5>
+                    <span class="songlistplay"><span id="current-time" class="timestamp">00:00<i id="5"
+                                class=" songitemplay fa-solid fa-play "></i></span>
+                </div>
+                <div class="songsitems">
+                    <img src="images/6.jpg" alt="1">
+                    <h5 class="songName">lem me love you</h5>
+                    <span class="songlistplay"><span id="current-time" class="timestamp">00:00 <i id="6"
+                                class=" songitemplay fa-solid fa-play"></i></span>
+                </div>
+
+            </div>
+        </div>
+        <div class="songbanner"></div>
+    </div>
+    <div class="bottom">
+        <input type="range" class="range" name="range" id="myprogressbar" min="0" max="100">
+        <div class="time-display">
+            <span id="remaining-time">-0:00</span>/
+            <span id="duration-time">0:00</span>
+
+        </div>
+        <div class="icons">
+            <!-- fontawesome icons -->
+
+            <i class="fa-solid fa-backward fa-lg" id="previous"></i>
+            <i class="fa-solid fa-play fa-lg" id="masterplay"></i>
+            <i class="fa-solid fa-forward fa-lg" id="next"></i>
+
+        </div>
+        <div class="songinfo">
+            <img src="images/playing.gif" alt="" id="gif"><span id="mastersongname">salam-e-ishq</span>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/3d04a2ca9a.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

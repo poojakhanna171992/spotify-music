@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="time-display">
+        <span id="current-time">0:00</span> /
+        <span id="duration-time">0:00</span>
+        (<span id="remaining-time">-0:00</span>)
+    </div>
+    <script>// Initialize variables
+        let currentTimeDisplay = document.getElementById('current-time');
+        let durationTimeDisplay = document.getElementById('duration-time');
+        let remainingTimeDisplay = document.getElementById('remaining-time');
+
+        // Display the total duration once the metadata is loaded
+        audioElement.addEventListener('loadedmetadata', () => {
+            let duration = audioElement.duration;
+            let minutes = Math.floor(duration / 60);
+            let seconds = Math.floor(duration % 60);
+            if (seconds < 10) seconds = '0' + seconds;
+            durationTimeDisplay.innerText = `${minutes}:${seconds}`;
+        });
+
+        // Update the current time, remaining time, and duration
+        audioElement.addEventListener('timeupdate', () => {
+            // Update current time display
+            let currentTime = audioElement.currentTime;
+            let currentMinutes = Math.floor(currentTime / 60);
+            let currentSeconds = Math.floor(currentTime % 60);
+            if (currentSeconds < 10) currentSeconds = '0' + currentSeconds;
+            currentTimeDisplay.innerText = `${currentMinutes}:${currentSeconds}`;
+
+            // Update total duration (in case of changes)
+            let duration = audioElement.duration;
+            let durationMinutes = Math.floor(duration / 60);
+            let durationSeconds = Math.floor(duration % 60);
+            if (durationSeconds < 10) durationSeconds = '0' + durationSeconds;
+            durationTimeDisplay.innerText = `${durationMinutes}:${durationSeconds}`;
+
+            // Update remaining time display
+            let remainingTime = duration - currentTime;
+            let remainingMinutes = Math.floor(remainingTime / 60);
+            let remainingSeconds = Math.floor(remainingTime % 60);
+            if (remainingSeconds < 10) remainingSeconds = '0' + remainingSeconds;
+            remainingTimeDisplay.innerText = `-${remainingMinutes}:${remainingSeconds}`;
+
+            // Update progress bar
+            let progress = parseInt((currentTime / duration) * 100);
+            myprogressbar.value = progress;
+        });</script>
+</body>
+
+</html>
+<script>
+    const makeAllPlay = () => {
+        Array.from(document.getElementsByClassName('songitemplay')).forEach((element) => {
+            element.classList.remove('fa-pause');
+            element.classList.add('fa-play');
+        });
+    };
+
+    Array.from(document.getElementsByClassName('songitemplay')).forEach((element, i) => {
+        element.addEventListener('click', (e) => {
+            if (audioElement.src !== songs[i].filePath) {
+                makeAllPlay(); // Reset all to play
+                songindex = i;
+                audioElement.src = songs[songindex].filePath;
+                mastersongname.innerHTML = songs[songindex].songName;
+                audioElement.currentTime = 0;
+                audioElement.play().then(() => {
+                    console.log("Playing:", songs[songindex].songName);
+                    e.target.classList.remove('fa-play');
+                    e.target.classList.add('fa-pause');
+                    masterplay.classList.remove('fa-play');
+                    masterplay.classList.add('fa-pause');
+                    gif.style.opacity = 1;
+                }).catch(error => {
+                    console.error("Error playing audio:", error);
+                });
+            } else if (audioElement.paused) {
+                audioElement.play().then(() => {
+                    e.target.classList.remove('fa-play');
+                    e.target.classList.add('fa-pause');
+                    masterplay.classList.remove('fa-play');
+                    masterplay.classList.add('fa-pause');
+                    gif.style.opacity = 1;
+                }).catch(error => {
+                    console.error("Error resuming audio:", error);
+                });
+            } else {
+                audioElement.pause();
+                e.target.classList.remove('fa-pause');
+                e.target.classList.add('fa-play');
+                masterplay.classList.remove('fa-pause');
+                masterplay.classList.add('fa-play');
+                gif.style.opacity = 0;
+            }
+        });
+    });
+</script>
